@@ -755,6 +755,15 @@ span.footer-logo {
   opacity: 0.3;
   border: 1px solid #8692a6;
 }
+.media, .media-title{
+  display: flex;
+}
+.media{
+  justify-content: space-between;
+}
+hr.material-class{
+  margin-bottom: 1rem;
+}
 
 @media (min-width: 300px) and (max-width: 450px) {
   .offer-pics {
@@ -893,6 +902,7 @@ span.footer-logo {
   .show-lg {
     display: none;
   }
+
 }
 @media (min-width: 451px) and (max-width: 767px) {
   .home-title-text {
@@ -962,9 +972,7 @@ span.footer-logo {
   #main-flex {
     flex-basis: 100%;
   }
-  hr:nth-last-child(1) {
-    margin-bottom: 7rem;
-  }
+
   .title-card {
     padding-left: 1rem;
   }
