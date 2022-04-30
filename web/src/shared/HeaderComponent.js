@@ -1,4 +1,9 @@
 import React from 'react';
+import {
+    FormControl,
+    InputGroup,
+    Button,
+  } from "react-bootstrap";
 import { string } from 'prop-types';
 import { Row } from 'simple-flexbox';
 import { StyleSheet, css } from 'aphrodite';
@@ -12,12 +17,20 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         marginLeft: 14,
         border: '1px solid #DFE0EB',
+        '@media (max-width: 768px)': {
+            display: 'none'
+        }
     },
     container: {
         height: 40
     },
     cursorPointer: {
         cursor: 'pointer'
+    },
+    search: {
+        '@media (max-width: 768px)': {
+            display: 'none'
+        }
     },
     name: {
         fontFamily: 'Poppins',
@@ -39,7 +52,8 @@ const styles = StyleSheet.create({
         width: 2,
         '@media (max-width: 768px)': {
             marginLeft: 12,
-            marginRight: 12
+            marginRight: 12,
+            display: 'none'
         }
     },
     title: {
@@ -50,10 +64,20 @@ const styles = StyleSheet.create({
         lineHeight: '30px',
         letterSpacing: 0.3,
         '@media (max-width: 768px)': {
-            marginLeft: 36
+            paddingLeft: 32,
+            textAlign: 'center',
+            width: '100%',
+            margin: '0 auto',
+            color: '#1B2C98'
         },
         '@media (max-width: 468px)': {
             fontSize: 20
+        }
+    },
+    spacer: {
+        marginTop: '1rem',
+        '@media (min-width: 769px)': {
+            display: 'none'
         }
     },
     iconStyles: {
@@ -69,10 +93,12 @@ function HeaderComponent(props) {
     const { icon, title, ...otherProps } = props;
 
     return (
+        <>
         <Row className={css(styles.container)} vertical="center" horizontal="space-between" {...otherProps}>
-            <span className={css(styles.title)}>{title}</span>
+            <div className={css(styles.title)}>
+            <span>{title}</span></div>
             <Row vertical="center">
-                <div className={css(styles.cursorPointer)}>
+                <div className={css(styles.cursorPointer, styles.search)}>
                     <IconSearch />
                 </div>
                 <div style={{ marginLeft: 25 }} className={css(styles.cursorPointer)}>
@@ -85,6 +111,25 @@ function HeaderComponent(props) {
                 </Row>
             </Row>
         </Row>
+        <div className={css(styles.spacer)}>
+                    <Row className={css(styles.container)} vertical="center" {...otherProps}>
+                    <InputGroup className="pt-2">
+                        <FormControl
+                          type="search"
+                          placeholder="Search task, video, resource..."
+                          style={{ width: "30vw", border: "none" }}
+                        />
+                        <Button
+                          variant="outline-light"
+                          style={{ backgroundColor: "#FFFFFF", border: "none" }}
+                          href="/lecSearch"
+                        >
+                          <IconSearch style={{ color: "#35353580" }} />
+                        </Button>
+                      </InputGroup>
+                    </Row>
+                    </div>
+                    </>
     );
 }
 
